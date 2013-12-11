@@ -1,0 +1,11 @@
+{
+    "Status"  : "OK",
+    "Settings" : {
+        "Version"       : "001",
+        "Scheme"        : "http://",
+        "Authority"     : "www.oxspeed.com",
+        "Runner"        : "app/user/rating",
+        "UserId"        : "0",
+        "Language"      : "en"
+    }
+}

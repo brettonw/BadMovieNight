@@ -1,0 +1,11 @@
+{
+    "Status"  : "OK",
+    "Versions" : {
+        "Version" : "001",
+        "Files" : {
+            "Cache" : {
+                "Version"   : "001"
+            }
+        }
+    }
+}

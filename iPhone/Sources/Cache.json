@@ -1,0 +1,12 @@
+{
+    "Status"  : "OK",
+    "Cache" : {
+        "Version" : "001",
+        "Files" : {
+            "Logo" : {
+                "URL"       : "http://www.oxspeed.com/logo.png",
+                "Version"   : "001"
+            }
+        }
+    }
+}
