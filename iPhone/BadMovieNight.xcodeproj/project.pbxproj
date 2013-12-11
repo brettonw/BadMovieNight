@@ -10,7 +10,6 @@
 		64BD35DE1857BF5700AAFEED /* WebApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BD35DD1857BF5700AAFEED /* WebApi.m */; };
 		64BD35E21857D7EC00AAFEED /* Settings.json in Resources */ = {isa = PBXBuildFile; fileRef = 64BD35E11857D7EC00AAFEED /* Settings.json */; };
 		64BD35E41857E40600AAFEED /* Cache.json in Resources */ = {isa = PBXBuildFile; fileRef = 64BD35E31857E40600AAFEED /* Cache.json */; };
-		64BD35E61857EB6D00AAFEED /* Error.json in Resources */ = {isa = PBXBuildFile; fileRef = 64BD35E51857EB6D00AAFEED /* Error.json */; };
 		64BD35E81857EBF700AAFEED /* Versions.json in Resources */ = {isa = PBXBuildFile; fileRef = 64BD35E71857EBF700AAFEED /* Versions.json */; };
 		64BD35EB1857FCF200AAFEED /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64BD35EA1857FCF200AAFEED /* ViewController.m */; };
 		64C761281857AD9D00F5DB07 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C761241857AD9D00F5DB07 /* libTestFlight.a */; };
@@ -31,7 +30,6 @@
 		64BD35DD1857BF5700AAFEED /* WebApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebApi.m; sourceTree = "<group>"; };
 		64BD35E11857D7EC00AAFEED /* Settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Settings.json; sourceTree = "<group>"; };
 		64BD35E31857E40600AAFEED /* Cache.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cache.json; sourceTree = "<group>"; };
-		64BD35E51857EB6D00AAFEED /* Error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Error.json; sourceTree = "<group>"; };
 		64BD35E71857EBF700AAFEED /* Versions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Versions.json; sourceTree = "<group>"; };
 		64BD35E91857FCF200AAFEED /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		64BD35EA1857FCF200AAFEED /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 			children = (
 				64BD35E11857D7EC00AAFEED /* Settings.json */,
 				64BD35E31857E40600AAFEED /* Cache.json */,
-				64BD35E51857EB6D00AAFEED /* Error.json */,
 				64BD35E71857EBF700AAFEED /* Versions.json */,
 			);
 			name = JSON;
@@ -259,7 +256,6 @@
 				64EB2F5B172366640076D0B1 /* InfoPlist.strings in Resources */,
 				64EB2F63172366640076D0B1 /* Default.png in Resources */,
 				64BD35E21857D7EC00AAFEED /* Settings.json in Resources */,
-				64BD35E61857EB6D00AAFEED /* Error.json in Resources */,
 				64EB2F65172366640076D0B1 /* Default@2x.png in Resources */,
 				64BD35E41857E40600AAFEED /* Cache.json in Resources */,
 				64BD35E81857EBF700AAFEED /* Versions.json in Resources */,
