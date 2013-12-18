@@ -16,6 +16,9 @@
 
 - (NSMutableDictionary*) fetchDictionary:(NSMutableDictionary*)postParams;
 
+@property (readonly) NSMutableDictionary* settings;
+- (void) saveSettings;
+
 
 @end
 

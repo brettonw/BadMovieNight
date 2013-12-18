@@ -1,0 +1,12 @@
+Executable=/Users/brettonw/Library/Developer/Xcode/Archives/2013-12-16/BadMovieNight 12-16-13, 8.58 AM.xcarchive/Products/Applications/BadMovieNight.app/BadMovieNight
+Identifier=com.frost.BadMovieNight
+Format=bundle with Mach-O universal (armv7 armv7s)
+CodeDirectory v=20100 size=1172 flags=0x0(none) hashes=50+5 location=embedded
+Signature size=4330
+Authority=iPhone Developer: Bretton Wade (U69H6VM7L8)
+Authority=Apple Worldwide Developer Relations Certification Authority
+Authority=Apple Root CA
+Signed Time=Dec 16, 2013, 8:58:48 AM
+Info.plist entries=30
+Sealed Resources version=2 rules=5 files=17
+Internal requirements count=2 size=456

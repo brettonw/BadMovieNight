@@ -1,0 +1,35 @@
+Publishing to /Users/brettonw/Documents/GitHub/BadMovieNight/iPhone/Publishing...
+Removing /Users/brettonw/Documents/GitHub/BadMovieNight/iPhone/Publishing/BadMovieNight.ipa...
+App Wrapper: /Users/brettonw/Library/Developer/Xcode/Archives/2013-12-16/BadMovieNight 12-16-13, 8.58 AM.xcarchive/Products/Applications/BadMovieNight.app
+Code Signing Identity: 
+
+Creating IPA at /Users/brettonw/Documents/GitHub/BadMovieNight/iPhone/Publishing/BadMovieNight.ipa...
+/usr/bin/xcrun -sdk iphoneos PackageApplication "/Users/brettonw/Library/Developer/Xcode/Archives/2013-12-16/BadMovieNight 12-16-13, 8.58 AM.xcarchive/Products/Applications/BadMovieNight.app" -o "/Users/brettonw/Documents/GitHub/BadMovieNight/iPhone/Publishing/BadMovieNight.ipa" --embed "/Users/brettonw/Library/Developer/Xcode/Archives/2013-12-16/BadMovieNight 12-16-13, 8.58 AM.xcarchive/Products/Applications/BadMovieNight.app/embedded.mobileprovision"
+Done creating IPA ...
+
+Zipping .dSYM at /Users/brettonw/Documents/GitHub/BadMovieNight/iPhone/Publishing/BadMovieNight.dSYM.zip...
+Done zipping ...
+Added release notes:
+- fix crash when we get to the end of all movies
+
+Uploading to TestFlight... 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 42  377k    0     0   42  160k      0   277k  0:00:01 --:--:--  0:00:01  277k100  377k    0     0  100  377k      0   196k  0:00:01  0:00:01 --:--:--  196k100  377k    0     0  100  377k      0   129k  0:00:02  0:00:02 --:--:--  129k100  378k    0   485  100  377k    143   111k  0:00:03  0:00:03 --:--:--  111k
+{
+    "bundle_version": "1.0 (8)", 
+    "install_url": "https://testflightapp.com/install/df4bfc0f1ae0024fafaf28bfdc8bf55f-ODQxMTgyMA/", 
+    "config_url": "https://testflightapp.com/dashboard/builds/permissions/8411820/", 
+    "created_at": "2013-12-16 08:59:14", 
+    "device_family": "iPhone", 
+    "notify": false, 
+    "team": "BadMovieNight", 
+    "minimum_os_version": "6.1", 
+    "release_notes": "- fix crash when we get to the end of all movies", 
+    "binary_size": 277963
+}
+Uploaded to TestFlight!
+
+Opening https://testflightapp.com/dashboard/builds/ now...
+
+Build Number Incremented to 9

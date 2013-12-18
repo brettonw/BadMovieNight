@@ -1,11 +1,13 @@
 {
     "Status"  : "OK",
     "Settings" : {
-        "Version"       : "001",
-        "Scheme"        : "http://",
-        "Authority"     : "www.oxspeed.com",
-        "Runner"        : "app/user/rating",
-        "UserId"        : "0",
-        "Language"      : "en"
+        "Version"               : "001",
+        "Scheme"                : "http://",
+        "Authority"             : "www.oxspeed.com",
+        "Runner"                : "app/user/rating",
+        "UserIdentifier"        : "0",
+        "CurrentPageIndex"      : "1",
+        "TransactionIndex"      : "0",
+        "Language"              : "en"
     }
 }

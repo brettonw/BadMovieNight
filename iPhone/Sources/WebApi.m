@@ -1,4 +1,5 @@
 #import "WebApi.h"
+#import "FileHelper.h"
 #include <sys/utsname.h>
 
 @implementation WebApi
@@ -22,27 +23,6 @@
     return result;
 }
 
-#pragma mark - File Helpers
-
-- (NSString*) fullPathFromFileName:(NSString*)fileName
-{
-    NSArray*        paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString*       documentsDirectory = [paths objectAtIndex:0];
-    NSString*       version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString*       build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    NSString*       fileNameWithVersion = [NSString stringWithFormat:@"v_%@-b_%@-%@", version, build, fileName];
-    NSString*       fullPath = [documentsDirectory stringByAppendingPathComponent:fileNameWithVersion];
-    //NSLog(@"Filename: %@", fullPath);
-    return fullPath;
-}
-
-- (void) deleteFile:(NSString*)fileName
-{
-    NSString*       fullPath = [self fullPathFromFileName:fileName];
-    NSFileManager*  fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtPath:fullPath error:nil];
-}
-
 #pragma mark - Dictionary Helpers
 
 #pragma mark - Fetch Helpers
@@ -55,7 +35,7 @@
         if (result != nil) {
             [root setObject:result forKey:name];
             if (saveToFile) {
-                NSString*   fullPathFileName = [self fullPathFromFileName:name];
+                NSString*   fullPathFileName = [FileHelper fullPathFromFileName:name];
                 BOOL        successfulWrite = [result writeToFile:fullPathFileName atomically:YES];
                 NSLog(@"Write Dictionary %@ (%@)", (successfulWrite ? @"SUCCESS" : @"FAIL"), fullPathFileName);
             }
@@ -88,7 +68,7 @@
     
     // if the web load failed or was skipped, let's load from a stored file
     if (fromFile == YES) {
-        NSString*               fileName = [self fullPathFromFileName:name];
+        NSString*               fileName = [FileHelper fullPathFromFileName:name];
         NSMutableDictionary*    result = [NSMutableDictionary dictionaryWithContentsOfFile:fileName];
         if (result != nil) {
             NSLog(@"Fetch Dictionary from file = %@", fileName);
@@ -157,7 +137,7 @@
 {
     // look to see if the file exists
     NSString*       fileName = [self getCachedFileName:name withSpec:spec];
-    NSString*       fullPathFileName = [self fullPathFromFileName:fileName];
+    NSString*       fullPathFileName = [FileHelper fullPathFromFileName:fileName];
     NSFileManager*  fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:fullPathFileName]) {
         NSError*    error;
@@ -185,7 +165,7 @@
 {
     // look to see if the file exists
     NSString*       fileName = [self getCachedFileName:name withSpec:spec];
-    NSString*       fullPathFileName = [self fullPathFromFileName:fileName];
+    NSString*       fullPathFileName = [FileHelper fullPathFromFileName:fileName];
     NSFileManager*  fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:fullPathFileName]) {
         NSLog(@"Returning cached file for %@", fileName);
@@ -281,12 +261,12 @@
     [self clearCache];
     
     // forcibly delete all the stored data
-    [self deleteFile:@"Versions"];
-    [self deleteFile:@"Cache"];
+    [FileHelper deleteFile:@"Versions"];
+    [FileHelper deleteFile:@"Cache"];
     
     // if we mean to reset the settings too...
     if (resetSettings) {
-        [self deleteFile:@"Settings"];
+        [FileHelper deleteFile:@"Settings"];
     }
     
     // and set all my references to nil
@@ -333,11 +313,14 @@
                                  [settings objectForKey:@"Runner"]
                                  ];
     NSURL*                  url = [NSURL URLWithString:urlString];
-    NSLog(@"%@", url);
+    //NSLog(@"Post URL: %@", url);
     NSMutableURLRequest*    request = [NSMutableURLRequest requestWithURL:url];
     
     // add in any generally required parameters
-    [postParams setValue:[settings objectForKey:@"Language"] forKey:@"language"];
+    [postParams setValue:[settings valueForKey:@"Language"] forKey:@"language"];
+    if (NOT [[settings valueForKey:@"UserIdentifier"] isEqualToString:@"0"]) {
+        [postParams setValue:[settings valueForKey:@"UserIdentifier"] forKey:@"userIdentifier"];
+    }
     
     // convert the postParams dictionary to a json string we can post
     NSError*                error;
@@ -345,10 +328,7 @@
     NSString*               jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     jsonString = [jsonString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     NSString*               postString = [NSString stringWithFormat:@"json=%@", jsonString];
-#define DEBUG_POST      1
-#if DEBUG_POST
-    NSLog(@"postString (%@)", postString);
-#endif
+    //NSLog(@"Post JSON: (%@)", postString);
     
     // set the post params
     [request setHTTPMethod:@"POST"];
@@ -356,12 +336,29 @@
     [request setHTTPBody:[postString dataUsingEncoding:NSASCIIStringEncoding]];
     
     // do the web request and return the resulting dictionary (if any)
+    NSMutableDictionary*    result = nil;
     NSURLResponse*          urlResponse;
     NSData*                 responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
     if (responseData != nil) {
-        return [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&error];
+        result = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&error];
+        if (result == nil) {
+            NSLog(@"Error serializing JSON: %@", error.description);
+        }
     }
-    return nil;
+    return result;
+}
+
+@dynamic settings;
+- (NSMutableDictionary*) settings
+{
+    return settings;
+}
+
+- (void) saveSettings
+{
+    NSString*   fullPathFileName = [FileHelper fullPathFromFileName:@"Settings"];
+    [settings writeToFile:fullPathFileName atomically:YES];
 }
 
 @end
+
